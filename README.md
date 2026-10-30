@@ -1,10 +1,18 @@
 # Answer Book
 
+English | [简体中文](README.zh-CN.md)
+
 **Close your phone and it is a book. Open it and you land on a random page with an answer.**
 
 Answer Book is a small open-source iOS app made for the iPhone Duo. Think of a question, open the phone like a book, and read the page you landed on. Flick the phone half shut and open it again to turn the page. Close it to start over.
 
 On iPhones and iPads without a hinge, tap the cover to open the book and use the buttons or swipe to turn pages.
+
+## Screenshots
+
+<!-- screenshots: cover (closed), a page (open), half open -->
+
+Screenshots from the iPhone Duo simulator are coming soon.
 
 ## How it uses the hinge
 
@@ -28,9 +36,8 @@ See `AnswerBook/Views/BookView.swift`; the whole hinge logic is about ten lines.
 ## Build
 
 1. Install [XcodeGen](https://github.com/yonaskolb/XcodeGen) and Xcode 27.1 or later.
-2. Clone this repository next to [HingeKit](https://github.com/MIDJUG3Nine/HingeKit) (the project references `../HingeKit`).
-3. Run `xcodegen` and open `AnswerBook.xcodeproj`.
-4. Set your own team under Signing & Capabilities.
+2. Run `xcodegen generate` and open `AnswerBook.xcodeproj`. Xcode fetches [HingeKit](https://github.com/MIDJUG3Nine/HingeKit) from GitHub with Swift Package Manager.
+3. Set your own team under Signing & Capabilities.
 
 The Run scheme sets `HINGE_SIMULATOR=1`, which shows HingeKit's hinge simulator panel in Debug builds so you can try the fold gestures on any simulator.
 
