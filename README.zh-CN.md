@@ -47,6 +47,16 @@ Run scheme 设置了 `HINGE_SIMULATOR=1`，Debug 构建里会显示 HingeKit 的
 xcodebuild test -scheme AnswerBook -destination 'platform=iOS Simulator,name=iPhone 17'
 ```
 
+## Star 趋势
+
+<a href="https://www.star-history.com/#MIDJUG3Nine/AnswerBook_iDUO&Date">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=midjug3nine%2fanswerbook_iduo&type=Date&theme=dark" />
+    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=midjug3nine%2fanswerbook_iduo&type=Date" />
+    <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=midjug3nine%2fanswerbook_iduo&type=Date" />
+  </picture>
+</a>
+
 ## 许可
 
 代码和答案文本都以 MIT 许可证发布。

@@ -47,6 +47,16 @@ The Run scheme sets `HINGE_SIMULATOR=1`, which shows HingeKit's hinge simulator 
 xcodebuild test -scheme AnswerBook -destination 'platform=iOS Simulator,name=iPhone 17'
 ```
 
+## Star History
+
+<a href="https://www.star-history.com/#MIDJUG3Nine/AnswerBook_iDUO&Date">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=midjug3nine%2fanswerbook_iduo&type=Date&theme=dark" />
+    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=midjug3nine%2fanswerbook_iduo&type=Date" />
+    <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=midjug3nine%2fanswerbook_iduo&type=Date" />
+  </picture>
+</a>
+
 ## License
 
 The code and the answer texts are released under the MIT License.
