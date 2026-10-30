@@ -6,7 +6,8 @@ options:
     iOS: "17.0"
 packages:
   HingeKit:
-    path: ../HingeKit
+    url: https://github.com/MIDJUG3Nine/HingeKit.git
+    from: 0.1.0
 targets:
   AnswerBook:
     type: application
