@@ -1,10 +1,18 @@
 # Answer Book
 
+English | [简体中文](README.zh-CN.md)
+
 **Close your phone and it is a book. Open it and you land on a random page with an answer.**
 
 Answer Book is a small open-source iOS app made for the iPhone Duo. Think of a question, open the phone like a book, and read the page you landed on. Flick the phone half shut and open it again to turn the page. Close it to start over.
 
 On iPhones and iPads without a hinge, tap the cover to open the book and use the buttons or swipe to turn pages.
+
+## Screenshots
+
+<!-- screenshots: cover (closed), a page (open), half open -->
+
+Screenshots from the iPhone Duo simulator are coming soon.
 
 ## How it uses the hinge
 
