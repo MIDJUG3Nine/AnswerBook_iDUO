@@ -1,0 +1,76 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+body{margin:0;background:transparent}
+.item{display:inline-block;vertical-align:top;margin:0;line-height:0}
+</style></head><body>
+<svg width="0" height="0" style="position:absolute">
+ <defs>
+  <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+   <stop offset="0" stop-color="#7a5a24"/><stop offset=".22" stop-color="#e9cf86"/>
+   <stop offset=".45" stop-color="#a8823e"/><stop offset=".7" stop-color="#f4e0a0"/><stop offset="1" stop-color="#806029"/>
+  </linearGradient>
+  <filter id="leather" x="0" y="0" width="100%" height="100%">
+   <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="3" seed="7" result="fine"/>
+   <feTurbulence type="fractalNoise" baseFrequency="0.11" numOctaves="2" seed="5" result="pebble"/>
+   <feTurbulence type="turbulence" baseFrequency="0.012" numOctaves="2" seed="2" result="coarse"/>
+   <feComposite in="fine" in2="pebble" operator="arithmetic" k1="0" k2="0.45" k3="0.75" k4="0" result="a"/>
+   <feComposite in="a" in2="coarse" operator="arithmetic" k1="0" k2="1" k3="0.25" k4="0" result="n"/>
+   <feDiffuseLighting in="n" lighting-color="#5a5652" surfaceScale="4.5" result="lit"><feDistantLight azimuth="235" elevation="50"/></feDiffuseLighting>
+   <feColorMatrix in="lit" type="matrix" values="0.36 0 0 0 -0.03  0 0.355 0 0 -0.03  0 0 0.35 0 -0.03  0 0 0 0 1"/>
+  </filter>
+  <filter id="paper" x="0" y="0" width="100%" height="100%">
+   <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" seed="11" result="fib"/>
+   <feColorMatrix in="fib" type="matrix" values="0 0 0 0 0.40  0 0 0 0 0.29  0 0 0 0 0.15  0 0 0 0.16 0" result="fibers"/>
+   <feTurbulence type="fractalNoise" baseFrequency="0.006" numOctaves="3" seed="4" result="blot"/>
+   <feColorMatrix in="blot" type="matrix" values="0 0 0 0 0.55  0 0 0 0 0.40  0 0 0 0 0.20  0 0 -0.9 0 0.42" result="stains"/>
+   <feMerge><feMergeNode in="SourceGraphic"/><feMergeNode in="stains"/><feMergeNode in="fibers"/></feMerge>
+  </filter>
+ </defs>
+</svg>
+
+<!-- 1. leather texture -->
+<div class="item" id="leatherTex"><svg width="1200" height="2400"><rect width="1200" height="2400" fill="#111" filter="url(#leather)"/>
+ <radialGradient id="lv" cx=".5" cy=".45" r=".75"><stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".55"/></radialGradient>
+ <rect width="1200" height="2400" fill="url(#lv)"/></svg></div>
+
+<!-- 2. paper texture -->
+<div class="item" id="paperTex"><svg width="2400" height="1800"><rect width="2400" height="1800" fill="#eadcbc" filter="url(#paper)"/>
+ <radialGradient id="pv" cx=".5" cy=".5" r=".72"><stop offset=".6" stop-color="#6b4a1f" stop-opacity="0"/><stop offset="1" stop-color="#6b4a1f" stop-opacity=".38"/></radialGradient>
+ <rect width="2400" height="1800" fill="url(#pv)"/></svg></div>
+
+<!-- 3. corner ornament (top-left), 300x300 -->
+<div class="item" id="corner"><svg width="300" height="300" viewBox="0 0 100 100">
+ <g fill="none" stroke="url(#gold)" stroke-linecap="round">
+  <path d="M6 62 V6 H62" stroke-width="2.4"/>
+  <path d="M14 42 V14 H42" stroke-width="1.4"/>
+  <path d="M14 14 Q30 19 34 34 c2 6 9 6 10 1 c1 -4 -4 -6 -6 -3" stroke-width="1.8"/>
+  <path d="M6 62 c0 6 5 9 9 6 c3 -3 0 -7 -3 -5" stroke-width="1.8"/>
+  <path d="M62 6 c6 0 9 5 6 9 c-3 3 -7 0 -5 -3" stroke-width="1.8"/>
+ </g>
+ <g fill="url(#gold)">
+  <path d="M6 1.5 L10.5 6 L6 10.5 L1.5 6 Z"/>
+  <circle cx="42" cy="14" r="1.8"/><circle cx="14" cy="42" r="1.8"/>
+ </g>
+</svg></div>
+
+<!-- 4. emblem 600x600 -->
+<div class="item" id="emblem"><svg width="600" height="600" viewBox="0 0 200 200">
+ <g fill="none" stroke="url(#gold)" stroke-linecap="round">
+  <circle cx="100" cy="100" r="92" stroke-width="2"/>
+  <circle cx="100" cy="100" r="84" stroke-width="1"/>
+  <circle cx="100" cy="100" r="52" stroke-width="1.6"/>
+ </g>
+ <g stroke="url(#gold)" stroke-width="1.4" stroke-linecap="round" id="ticks"></g>
+ <g fill="url(#gold)">
+  <path d="M100 58 L106 94 L142 100 L106 106 L100 142 L94 106 L58 100 L94 94 Z"/>
+  <path d="M100 30 a6 6 0 1 0 0.01 0 Z M100 33 a4.2 4.2 0 1 1 -0.01 0 Z" fill-rule="evenodd"/>
+ </g>
+ <g fill="none" stroke="url(#gold)" stroke-width="1.6"><path d="M114 160 a12 12 0 1 1 -14 -14 a9 9 0 1 0 14 14 z"/></g>
+</svg></div>
+<script>
+const g=document.getElementById('ticks');
+for(let i=0;i<48;i++){const a=i*Math.PI*2/48, r1=84, r2=i%4===0?74:79;
+ const l=document.createElementNS('http://www.w3.org/2000/svg','line');
+ l.setAttribute('x1',100+r1*Math.cos(a));l.setAttribute('y1',100+r1*Math.sin(a));
+ l.setAttribute('x2',100+r2*Math.cos(a));l.setAttribute('y2',100+r2*Math.sin(a));g.appendChild(l);}
+</script>
+</body></html>

@@ -48,7 +48,7 @@ private struct SeededGenerator: RandomNumberGenerator {
 
     @Test func answersAreUniqueAndNotEmpty() {
         let answers = Answer.all
-        #expect(answers.count >= 100)
+        #expect(answers.count == 365)
         #expect(Set(answers.map(\.zh)).count == answers.count)
         #expect(Set(answers.map(\.en)).count == answers.count)
         #expect(answers.allSatisfy { !$0.zh.isEmpty && !$0.en.isEmpty })

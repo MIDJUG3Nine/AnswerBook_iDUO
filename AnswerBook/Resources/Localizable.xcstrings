@@ -6,27 +6,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "答案书"
-          }
-        }
-      }
-    },
-    "Think of your question, then open the book.": {
-      "localizations": {
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "心里默念你的问题，然后翻开书。"
-          }
-        }
-      }
-    },
-    "Think of your question, then tap to open the book.": {
-      "localizations": {
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "心里默念你的问题，然后点一下翻开书。"
+            "value": "答案之书"
           }
         }
       }
@@ -36,7 +16,17 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "翻开"
+            "value": "翻开它"
+          }
+        }
+      }
+    },
+    "Tap to open": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "轻点翻开"
           }
         }
       }
@@ -51,12 +41,12 @@
         }
       }
     },
-    "Flick the phone half shut to turn the page. Close it to start over.": {
+    "Turn the page": {
       "localizations": {
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "把手机快速半合再打开就能翻页，合上就重新开始。"
+            "value": "翻一页"
           }
         }
       }
@@ -67,16 +57,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "合上"
-          }
-        }
-      }
-    },
-    "Turn the page": {
-      "localizations": {
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "翻一页"
           }
         }
       }

@@ -4,7 +4,7 @@ English | [简体中文](README.zh-CN.md)
 
 **Close your phone and it is a book. Open it and you land on a random page with an answer.**
 
-Answer Book is a small open-source iOS app made for the iPhone Duo. Think of a question, open the phone like a book, and read the page you landed on. Flick the phone half shut and open it again to turn the page. Close it to start over.
+Answer Book is a small open-source iOS app made for the iPhone Duo, dressed as an old black leather book with gold foil and aged paper. Think of a question, open the phone like a book, and read the page you landed on. Flick the phone half shut and open it again to turn the page. Close it to start over.
 
 On iPhones and iPads without a hinge, tap the cover to open the book and use the buttons or swipe to turn pages.
 
@@ -28,9 +28,10 @@ See `AnswerBook/Views/BookView.swift`; the whole hinge logic is about ten lines.
 
 ## Features
 
-- 120 original answers in English and Simplified Chinese, shown in the reader's language.
+- A black leather-bound book: gold-foil cover with corner ornaments and an emblem, answers printed on aged paper. On the iPhone Duo's inner display the open book shows as a two-page spread.
+- 365 original answers, one for every day of the year, in English and Simplified Chinese, shown in the reader's language.
 - Answers are dealt like shuffled cards: no repeats until every page has been read, never the same page twice in a row.
-- VoiceOver labels, Dynamic Type, Reduce Motion and Dark Mode are supported.
+- VoiceOver labels, Dynamic Type and Reduce Motion are supported. The book looks the same in light and dark mode, like a real object.
 - No account, no network, no tracking. Nothing leaves the phone.
 
 ## Build
@@ -40,6 +41,10 @@ See `AnswerBook/Views/BookView.swift`; the whole hinge logic is about ten lines.
 3. Set your own team under Signing & Capabilities.
 
 The Run scheme sets `HINGE_SIMULATOR=1`, which shows HingeKit's hinge simulator panel in Debug builds so you can try the fold gestures on any simulator.
+
+## Artwork
+
+The leather, paper, corner ornament, emblem and app icon are drawn in SVG. The sources are in [`design/`](design/), with notes on how to render them into `Assets.xcassets`.
 
 ## Tests
 

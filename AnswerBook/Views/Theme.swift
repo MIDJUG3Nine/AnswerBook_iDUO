@@ -1,16 +1,17 @@
 import SwiftUI
-import UIKit
 
+/// An old leather-bound book: black leather, gold foil, aged paper and brown ink.
+/// The book looks the same in light and dark mode, like a real object would.
 enum Theme {
-    /// Cover: deep navy.
-    static let cover = Color(hex: 0x0C2236)
-    static let coverText = Color(hex: 0xF6F1E7)
-    /// Bright blue, used for the bookmark line and the main button.
-    static let accent = Color(hex: 0x38BDF8)
+    static let ink = Color(hex: 0x2B1D12)
+    static let fadedInk = Color(hex: 0x6B5235)
 
-    /// Warm paper in light mode, a dark page at night.
-    static let paper = Color(light: 0xF6F1E7, dark: 0x141C25)
-    static let ink = Color(light: 0x0C2236, dark: 0xEDE6D8)
+    /// Gold foil: darker and lighter bands so it catches the light.
+    static let gold = LinearGradient(
+        colors: [0x7A5A24, 0xE9CF86, 0xA8823E, 0xF4E0A0, 0x806029].map(Color.init(hex:)),
+        startPoint: .topLeading,
+        endPoint: .bottomTrailing
+    )
 }
 
 extension Color {
@@ -20,11 +21,5 @@ extension Color {
             green: Double((hex >> 8) & 0xFF) / 255,
             blue: Double(hex & 0xFF) / 255
         )
-    }
-
-    init(light: UInt32, dark: UInt32) {
-        self.init(uiColor: UIColor { traits in
-            UIColor(Color(hex: traits.userInterfaceStyle == .dark ? dark : light))
-        })
     }
 }
