@@ -38,7 +38,7 @@ struct AnswerPageView: View {
             }
             .frame(width: proxy.size.width, height: proxy.size.height)
             .background {
-                paper(spread: spread).ignoresSafeArea()
+                paper(spread: spread, isWide: proxy.size.width > proxy.size.height).ignoresSafeArea()
             }
         }
         .contentShape(Rectangle())
@@ -61,23 +61,23 @@ struct AnswerPageView: View {
         VStack(spacing: 0) {
             Spacer()
             Text(page.answer.text())
-                .font(.system(.largeTitle, design: .serif))
-                .lineSpacing(6)
-                .tracking(1)
-                .foregroundStyle(Theme.ink)
+                .font(Theme.bookFont(size: chinese ? 34 : 38, relativeTo: .largeTitle, chinese: chinese))
+                .lineSpacing(chinese ? 10 : 4)
+                .tracking(chinese ? 2 : 0.5)
                 .multilineTextAlignment(.center)
                 .minimumScaleFactor(0.5)
                 .padding(.horizontal, 36)
                 // The answer seeps into the paper like ink.
                 .blur(radius: revealed || reduceMotion ? 0 : 6)
                 .opacity(revealed ? 1 : 0)
+                .printedInk()
             Ornament()
                 .padding(.top, 28)
                 .opacity(revealed ? 1 : 0)
             Spacer()
             Text("Page \(page.number)")
-                .font(.system(.footnote, design: .serif))
-                .foregroundStyle(Theme.fadedInk.opacity(0.8))
+                .font(Theme.bookFont(size: 15, relativeTo: .footnote))
+                .printedInk(Theme.fadedInk)
                 .padding(.bottom, 20)
         }
     }
@@ -88,16 +88,20 @@ struct AnswerPageView: View {
             .resizable()
             .scaledToFit()
             .frame(width: 140, height: 140)
-            .foregroundStyle(Theme.fadedInk.opacity(0.22))
+            .printedInk(Theme.fadedInk.opacity(0.3))
             .accessibilityHidden(true)
     }
 
-    private func paper(spread: Spread) -> some View {
+    private var chinese: Bool { Answer.readsChinese() }
+
+    private func paper(spread: Spread, isWide: Bool) -> some View {
         Color.clear
             .overlay {
-                Image("Paper")
+                Image(isWide ? "PaperWide" : "PaperTall")
                     .resizable()
                     .scaledToFill()
+                    // Each page turns the sheet a different way, so the stains don't repeat page after page.
+                    .scaleEffect(x: page.number.isMultiple(of: 2) ? -1 : 1, y: page.number % 4 < 2 ? 1 : -1)
             }
             .clipped()
             .overlay {
@@ -141,7 +145,7 @@ private struct Ornament: View {
             Rectangle().frame(width: 6, height: 6).rotationEffect(.degrees(45))
             Rectangle().frame(width: 36, height: 0.8)
         }
-        .foregroundStyle(Theme.fadedInk.opacity(0.6))
+        .printedInk(Theme.fadedInk)
         .accessibilityHidden(true)
     }
 }

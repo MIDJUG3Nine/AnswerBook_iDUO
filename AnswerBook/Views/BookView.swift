@@ -2,6 +2,8 @@ import HingeKit
 import SwiftUI
 
 /// The whole app: a cover while the book is closed, a random page once it opens.
+/// Each time the app comes to the screen the book starts closed, and the reader is asked
+/// to think of their question before opening it.
 ///
 /// On iPhone Duo the hinge drives it: open the phone to open the book, flick it
 /// half shut to turn the page, close it to go back to the cover. On other devices
@@ -9,7 +11,9 @@ import SwiftUI
 struct BookView: View {
     @State private var deck = AnswerDeck()
     @State private var page: Page?
+    @State private var asksForQuestion = true
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.scenePhase) private var scenePhase
 
     var body: some View {
         FoldReader { fold in
@@ -23,6 +27,14 @@ struct BookView: View {
                         .transition(coverTransition)
                         .zIndex(1)
                 }
+
+                if asksForQuestion && page == nil {
+                    QuestionPrompt(onOpen: openBook) {
+                        withAnimation(.easeInOut(duration: 1.0)) { asksForQuestion = false }
+                    }
+                    .transition(.opacity)
+                    .zIndex(2)
+                }
             }
         }
         .onFoldEvent { event in
@@ -34,6 +46,13 @@ struct BookView: View {
             }
         }
         .sensoryFeedback(.impact(weight: .light), trigger: page?.id)
+        .onChange(of: scenePhase) { _, phase in
+            // Close the book when the app leaves the screen, so coming back starts with the question.
+            if phase == .background {
+                page = nil
+                asksForQuestion = true
+            }
+        }
     }
 
     /// The cover swings open around the spine, unless Reduce Motion is on.
@@ -44,7 +63,10 @@ struct BookView: View {
     }
 
     private func openBook() {
-        withAnimation(.easeInOut(duration: 0.6)) { page = deck.draw() }
+        withAnimation(.easeInOut(duration: 0.6)) {
+            asksForQuestion = false
+            page = deck.draw()
+        }
     }
 
     private func turnPage() {

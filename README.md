@@ -6,7 +6,7 @@ English | [简体中文](README.zh-CN.md)
 
 Answer Book is a small open-source iOS app made for the iPhone Duo, dressed as an old black leather book with gold foil and aged paper. Think of a question, open the phone like a book, and read the page you landed on. Flick the phone half shut and open it again to turn the page. Close it to start over.
 
-On iPhones and iPads without a hinge, tap the cover to open the book and use the buttons or swipe to turn pages.
+On iPhones and iPads without a hinge, tap the cover to open the book, tap a page to turn it, and swipe down to close it.
 
 ## Screenshots
 
@@ -29,6 +29,8 @@ See `AnswerBook/Views/BookView.swift`; the whole hinge logic is about ten lines.
 ## Features
 
 - A black leather-bound book: gold-foil cover with corner ornaments and an emblem, answers printed on aged paper. On the iPhone Duo's inner display the open book shows as a two-page spread.
+- The type sits in the book, not on top of it. Answers are set in Noto Serif SC and IM FELL English (a revival of 17th-century English type) and soak into the paper like ink; the title is gold foil stamped into the leather.
+- Each time you open the app, the book shows its name and asks you to think of a question before it opens.
 - 365 original answers, one for every day of the year, in English and Simplified Chinese, shown in the reader's language.
 - Answers are dealt like shuffled cards: no repeats until every page has been read, never the same page twice in a row.
 - VoiceOver labels, Dynamic Type and Reduce Motion are supported. The book looks the same in light and dark mode, like a real object.
@@ -44,7 +46,7 @@ The Run scheme sets `HINGE_SIMULATOR=1`, which shows HingeKit's hinge simulator 
 
 ## Artwork
 
-The leather, paper, corner ornament, emblem and app icon are drawn in SVG. The sources are in [`design/`](design/), with notes on how to render them into `Assets.xcassets`.
+The leather, paper, corner ornament, emblem and app icon are drawn in SVG. The sources are in [`design/`](design/), with notes on how to render them into `Assets.xcassets`, along with the scripts that draw the ink and foil masks and cut the Chinese font down to the characters the book uses.
 
 ## Tests
 
@@ -55,6 +57,8 @@ xcodebuild test -scheme AnswerBook -destination 'platform=iOS Simulator,name=iPh
 ## License
 
 The code and the answer texts are released under the MIT License.
+
+The fonts in `AnswerBook/Resources/Fonts` (Noto Serif SC, cut down to the characters the book uses, and IM FELL English) are under the SIL Open Font License 1.1; their license files are next to them.
 
 The Answer Book name and app icon are not covered by the license. If you publish your own build, please use your own name and icon.
 

@@ -46,6 +46,13 @@ private struct SeededGenerator: RandomNumberGenerator {
         }
     }
 
+    @Test func pagesAreNumberedOneTo365() {
+        let numbers = Answer.all.indices.map(AnswerDeck.pageNumber(for:))
+        #expect(numbers.first == 1)
+        #expect(numbers.last == Answer.all.count)
+        #expect(Set(numbers).count == Answer.all.count)
+    }
+
     @Test func answersAreUniqueAndNotEmpty() {
         let answers = Answer.all
         #expect(answers.count == 365)

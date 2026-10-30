@@ -39,8 +39,8 @@ struct AnswerDeck: Sendable {
         return draw(using: &generator)
     }
 
-    /// Each answer always sits on the same page, like in a printed book.
+    /// Each answer always sits on the same page, like in a printed book: page 1 to page 365.
     static func pageNumber(for index: Int) -> Int {
-        index * 3 + 7
+        index + 1
     }
 }

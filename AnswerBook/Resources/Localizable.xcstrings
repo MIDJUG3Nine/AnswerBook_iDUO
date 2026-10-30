@@ -60,6 +60,16 @@
           }
         }
       }
+    },
+    "Think of a question.": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "想一个问题吧"
+          }
+        }
+      }
     }
   },
   "version": "1.0"

@@ -7,7 +7,12 @@ struct Answer: Hashable, Sendable {
 
     /// The text in the reader's language: Chinese for any Chinese locale, English otherwise.
     func text(for languages: [String] = Locale.preferredLanguages) -> String {
-        languages.first?.hasPrefix("zh") == true ? zh : en
+        Self.readsChinese(languages) ? zh : en
+    }
+
+    /// The reader's first language is any kind of Chinese.
+    static func readsChinese(_ languages: [String] = Locale.preferredLanguages) -> Bool {
+        languages.first?.hasPrefix("zh") == true
     }
 }
 

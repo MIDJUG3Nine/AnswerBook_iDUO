@@ -6,7 +6,7 @@
 
 Answer Book（中文名「答案之书」）是一个为 iPhone Duo 做的小型开源 iOS App，样子是一本黑色皮面、烫金封面、纸页泛黄的旧书。心里想一个问题，像翻书一样打开手机，读一读你翻到的那一页。把手机快速半合再打开，就能翻到下一页；合上，一切重新开始。
 
-在没有铰链的 iPhone 和 iPad 上，点一下封面就能打开书，用按钮或左右滑动来翻页。
+在没有铰链的 iPhone 和 iPad 上，点一下封面打开书，点书页翻页，向下滑合上。
 
 ## 截图
 
@@ -29,6 +29,8 @@ iPhone Duo 模拟器上的截图稍后补上。
 ## 功能
 
 - 黑色皮面精装书：烫金封面配四角花饰和徽章，答案印在泛黄的纸页上。在 iPhone Duo 的内屏上，打开的书会显示成左右两页。
+- 文字是印在书里的，不是浮在上面。答案用思源宋体（Noto Serif SC）和 IM FELL English（复刻 17 世纪英国铅字）排版，像油墨一样渗进纸里；书名是压进皮革的烫金。
+- 每次打开 App，先出现「答案之书」，再提示你「想一个问题吧」，然后才翻开书。
 - 365 条原创答案，一年每天一条，有英文和简体中文，按读者的系统语言显示。
 - 答案像洗过的牌一样发：每一页都读过之前不会重复，也绝不会连续两次是同一页。
 - 支持 VoiceOver 标签、动态字体和减弱动态效果。书在浅色和深色模式下看起来一样，就像一件真实的物品。
@@ -44,7 +46,7 @@ Run scheme 设置了 `HINGE_SIMULATOR=1`，Debug 构建里会显示 HingeKit 的
 
 ## 美术素材
 
-皮面、纸张、四角花饰、徽章和 App 图标都是用 SVG 画的，源文件在 [`design/`](design/) 里，里面写了怎么渲染成 `Assets.xcassets` 里的图片。
+皮面、纸张、四角花饰、徽章和 App 图标都是用 SVG 画的，源文件在 [`design/`](design/) 里，里面写了怎么渲染成 `Assets.xcassets` 里的图片；油墨和烫金的纹理、以及把中文字体裁到只剩书里用到的字的脚本也在那里。
 
 ## 测试
 
@@ -55,6 +57,8 @@ xcodebuild test -scheme AnswerBook -destination 'platform=iOS Simulator,name=iPh
 ## 许可
 
 代码和答案文本都以 MIT 许可证发布。
+
+`AnswerBook/Resources/Fonts` 里的字体（只保留书中用到的字的思源宋体 Noto Serif SC，以及 IM FELL English）使用 SIL Open Font License 1.1，许可文件就放在字体旁边。
 
 Answer Book 这个名字和 App 图标不在许可范围内。如果你要发布自己的构建版本，请换成你自己的名字和图标。
 

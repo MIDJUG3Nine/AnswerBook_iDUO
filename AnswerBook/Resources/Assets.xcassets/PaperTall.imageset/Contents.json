@@ -1,6 +1,6 @@
 {
   "images" : [
-    { "filename" : "paper.jpg", "idiom" : "universal" }
+    { "filename" : "paper-tall.jpg", "idiom" : "universal" }
   ],
   "info" : { "author" : "xcode", "version" : 1 }
 }

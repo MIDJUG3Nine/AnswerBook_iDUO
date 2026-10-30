@@ -3,6 +3,10 @@ import SwiftUI
 
 @main
 struct AnswerBookApp: App {
+    init() {
+        Theme.registerFonts()
+    }
+
     var body: some Scene {
         WindowGroup {
             BookView()
