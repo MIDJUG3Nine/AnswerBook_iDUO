@@ -19,21 +19,22 @@ struct AnswerPageView: View {
     var body: some View {
         GeometryReader { proxy in
             let spread = Spread(size: proxy.size, isUnfolded: isUnfolded)
+            let scale = Theme.scale(for: spread.pageSize(in: proxy.size))
 
             Group {
                 switch spread {
                 case .sideBySide:
                     HStack(spacing: 0) {
-                        facingPage.frame(maxWidth: .infinity)
-                        answerPage.frame(maxWidth: .infinity)
+                        facingPage(scale: scale).frame(maxWidth: .infinity)
+                        answerPage(scale: scale).frame(maxWidth: .infinity)
                     }
                 case .stacked:
                     VStack(spacing: 0) {
-                        facingPage.frame(maxHeight: .infinity)
-                        answerPage.frame(maxHeight: .infinity)
+                        facingPage(scale: scale).frame(maxHeight: .infinity)
+                        answerPage(scale: scale).frame(maxHeight: .infinity)
                     }
                 case .single:
-                    answerPage
+                    answerPage(scale: scale)
                 }
             }
             .frame(width: proxy.size.width, height: proxy.size.height)
@@ -57,37 +58,37 @@ struct AnswerPageView: View {
         .accessibilityAction(named: "Close the book", onClose)
     }
 
-    private var answerPage: some View {
+    private func answerPage(scale: CGFloat) -> some View {
         VStack(spacing: 0) {
             Spacer()
             Text(page.answer.text())
-                .font(Theme.bookFont(size: chinese ? 34 : 38, relativeTo: .largeTitle, chinese: chinese))
-                .lineSpacing(chinese ? 10 : 4)
-                .tracking(chinese ? 2 : 0.5)
+                .font(Theme.bookFont(size: (chinese ? 34 : 38) * scale, relativeTo: .largeTitle, chinese: chinese))
+                .lineSpacing((chinese ? 10 : 4) * scale)
+                .tracking((chinese ? 2 : 0.5) * scale)
                 .multilineTextAlignment(.center)
                 .minimumScaleFactor(0.5)
-                .padding(.horizontal, 36)
+                .padding(.horizontal, 36 * scale)
                 // The answer seeps into the paper like ink.
                 .blur(radius: revealed || reduceMotion ? 0 : 6)
                 .opacity(revealed ? 1 : 0)
                 .printedInk()
-            Ornament()
-                .padding(.top, 28)
+            Ornament(scale: scale)
+                .padding(.top, 28 * scale)
                 .opacity(revealed ? 1 : 0)
             Spacer()
             Text("Page \(page.number)")
-                .font(Theme.bookFont(size: 15, relativeTo: .footnote))
+                .font(Theme.bookFont(size: 15 * scale, relativeTo: .footnote))
                 .printedInk(Theme.fadedInk)
-                .padding(.bottom, 20)
+                .padding(.bottom, 20 * scale)
         }
     }
 
-    private var facingPage: some View {
+    private func facingPage(scale: CGFloat) -> some View {
         Image("Emblem")
             .renderingMode(.template)
             .resizable()
             .scaledToFit()
-            .frame(width: 140, height: 140)
+            .frame(width: 140 * scale, height: 140 * scale)
             .printedInk(Theme.fadedInk.opacity(0.3))
             .accessibilityHidden(true)
     }
@@ -135,15 +136,26 @@ private enum Spread {
             self = .single
         }
     }
+
+    /// The size of one page of the spread.
+    func pageSize(in size: CGSize) -> CGSize {
+        switch self {
+        case .single: size
+        case .sideBySide: CGSize(width: size.width / 2, height: size.height)
+        case .stacked: CGSize(width: size.width, height: size.height / 2)
+        }
+    }
 }
 
 /// A short rule with a diamond in the middle, like a printer's ornament.
 private struct Ornament: View {
+    let scale: CGFloat
+
     var body: some View {
-        HStack(spacing: 10) {
-            Rectangle().frame(width: 36, height: 0.8)
-            Rectangle().frame(width: 6, height: 6).rotationEffect(.degrees(45))
-            Rectangle().frame(width: 36, height: 0.8)
+        HStack(spacing: 10 * scale) {
+            Rectangle().frame(width: 36 * scale, height: 0.8 * scale)
+            Rectangle().frame(width: 6 * scale, height: 6 * scale).rotationEffect(.degrees(45))
+            Rectangle().frame(width: 36 * scale, height: 0.8 * scale)
         }
         .printedInk(Theme.fadedInk)
         .accessibilityHidden(true)

@@ -10,21 +10,19 @@ struct QuestionPrompt: View {
     @State private var step = 0
 
     var body: some View {
-        ZStack {
-            Color.black.opacity(0.9)
-            // A little warm light, as if from a candle beside the book.
-            RadialGradient(colors: [Color(hex: 0x3B2A12).opacity(0.6), .clear], center: .center, startRadius: 0, endRadius: 280)
+        GeometryReader { proxy in
+            let scale = Theme.scale(for: proxy.size)
 
-            VStack(spacing: 26) {
+            VStack(spacing: 26 * scale) {
                 Text("Answer Book")
-                    .font(Theme.bookFont(size: Theme.interfaceIsChinese ? 36 : 40, relativeTo: .largeTitle, bold: true, smallCaps: true))
-                    .tracking(Theme.interfaceIsChinese ? 10 : 4)
+                    .font(Theme.bookFont(size: (Theme.interfaceIsChinese ? 36 : 40) * scale, relativeTo: .largeTitle, bold: true, smallCaps: true))
+                    .tracking((Theme.interfaceIsChinese ? 10 : 4) * scale)
                     .foregroundStyle(Theme.gold)
                     .shadow(color: Color(hex: 0xE9CF86).opacity(0.3), radius: 10)
                     .opacity(step >= 1 ? 1 : 0)
                 Text("Think of a question.")
-                    .font(Theme.bookFont(size: Theme.interfaceIsChinese ? 22 : 26, relativeTo: .title2))
-                    .tracking(Theme.interfaceIsChinese ? 4 : 1)
+                    .font(Theme.bookFont(size: (Theme.interfaceIsChinese ? 22 : 26) * scale, relativeTo: .title2))
+                    .tracking((Theme.interfaceIsChinese ? 4 : 1) * scale)
                     .foregroundStyle(Theme.parchment)
                     .shadow(color: Color(hex: 0xE9CF86).opacity(0.25), radius: 8)
                     .blur(radius: step >= 2 || reduceMotion ? 0 : 5)
@@ -32,8 +30,18 @@ struct QuestionPrompt: View {
             }
             .multilineTextAlignment(.center)
             .padding(.horizontal, 40)
+            .frame(width: proxy.size.width, height: proxy.size.height)
         }
-        .ignoresSafeArea()
+        .background {
+            ZStack {
+                Color.black.opacity(0.9)
+                // A little warm light, as if from a candle beside the book.
+                RadialGradient(colors: [Color(hex: 0x3B2A12).opacity(0.6), .clear], center: .center, startRadius: 0, endRadius: 280)
+            }
+            // The dark reaches every edge of the screen, the words stay clear of the status bar,
+            // so they line up with the title on the cover (the iPhone Duo's is a strip down one side).
+            .ignoresSafeArea()
+        }
         .contentShape(Rectangle())
         .onTapGesture(perform: onOpen)
         .accessibilityElement(children: .combine)
