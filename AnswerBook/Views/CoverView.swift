@@ -8,6 +8,7 @@ struct CoverView: View {
     var body: some View {
         GeometryReader { proxy in
             let spine = min(proxy.size.width * 0.07, 30)
+            let scale = Theme.scale(for: proxy.size)
             // The leather runs under the status bar and the home indicator, the gold frame stays clear of them.
             let insets = EdgeInsets(
                 top: max(22, proxy.safeAreaInsets.top),
@@ -24,7 +25,7 @@ struct CoverView: View {
                     .clipShape(.rect(cornerRadius: 26))
                     .padding(EdgeInsets(top: 14, leading: spine, bottom: 3, trailing: 3))
 
-                cover(spine: spine, frameInsets: insets)
+                cover(spine: spine, frameInsets: insets, scale: scale)
                     .padding(EdgeInsets(top: 6, leading: 6, bottom: 11, trailing: 11))
             }
             // Fill the height, but keep clear of the camera strip beside the outer display.
@@ -40,7 +41,7 @@ struct CoverView: View {
         .accessibilityAction(named: "Open the book", onOpen)
     }
 
-    private func cover(spine: CGFloat, frameInsets: EdgeInsets) -> some View {
+    private func cover(spine: CGFloat, frameInsets: EdgeInsets, scale: CGFloat) -> some View {
         ZStack {
             Color.clear
                 .overlay {
@@ -58,7 +59,7 @@ struct CoverView: View {
                 Spacer(minLength: 0)
             }
 
-            frame
+            frame(scale: scale)
                 .padding(frameInsets)
         }
         .clipShape(.rect(cornerRadius: 28))
@@ -67,20 +68,20 @@ struct CoverView: View {
         }
     }
 
-    private var frame: some View {
+    private func frame(scale: CGFloat) -> some View {
         ZStack {
             ZStack {
                 RoundedRectangle(cornerRadius: 6).strokeBorder(Theme.gold, lineWidth: 2.5)
                 RoundedRectangle(cornerRadius: 4).strokeBorder(Theme.gold, lineWidth: 1).padding(8)
-                corners
+                corners(size: 60 * scale)
             }
             .foilStamped()
 
-            VStack(spacing: 28) {
+            VStack(spacing: 28 * scale) {
                 Spacer()
                 Text("Answer Book")
-                    .font(Theme.bookFont(size: Theme.interfaceIsChinese ? 40 : 42, relativeTo: .largeTitle, bold: true, smallCaps: true))
-                    .tracking(Theme.interfaceIsChinese ? 10 : 4)
+                    .font(Theme.bookFont(size: (Theme.interfaceIsChinese ? 40 : 42) * scale, relativeTo: .largeTitle, bold: true, smallCaps: true))
+                    .tracking((Theme.interfaceIsChinese ? 10 : 4) * scale)
                     .multilineTextAlignment(.center)
                     .minimumScaleFactor(0.6)
                     .foregroundStyle(Theme.gold)
@@ -88,24 +89,23 @@ struct CoverView: View {
                 Image("Emblem")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 128, height: 128)
+                    .frame(width: 128 * scale, height: 128 * scale)
                     .foilStamped()
                 Spacer()
                 Text(hint)
-                    .font(Theme.bookFont(size: 15, relativeTo: .footnote))
-                    .tracking(2)
+                    .font(Theme.bookFont(size: 15 * scale, relativeTo: .footnote))
+                    .tracking(2 * scale)
                     .foregroundStyle(Theme.gold)
                     .opacity(0.65)
                     .foilStamped()
-                    .padding(.bottom, 28)
+                    .padding(.bottom, 28 * scale)
             }
             .padding(.horizontal, 24)
         }
     }
 
-    private var corners: some View {
-        let size: CGFloat = 60
-        return ZStack {
+    private func corners(size: CGFloat) -> some View {
+        ZStack {
             Image("Corner").resizable().frame(width: size, height: size)
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
             Image("Corner").resizable().frame(width: size, height: size).scaleEffect(x: -1)

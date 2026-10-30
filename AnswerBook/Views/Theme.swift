@@ -32,6 +32,13 @@ enum Theme {
         return .custom(name, size: size, relativeTo: style)
     }
 
+    /// How much larger the type and ornaments are drawn in a space of this size (a page, or the cover).
+    /// Phones and both iPhone Duo displays stay at 1, so the book looks the same there; an iPad
+    /// page grows with its shorter side, up to 1.6 times, so the words don't sit lost in the middle.
+    static func scale(for size: CGSize) -> CGFloat {
+        min(max(min(size.width, size.height) / 500, 1), 1.6)
+    }
+
     /// The interface strings are shown in Chinese (the app has English and Simplified Chinese).
     static let interfaceIsChinese = Bundle.main.preferredLocalizations.first?.hasPrefix("zh") == true
 
