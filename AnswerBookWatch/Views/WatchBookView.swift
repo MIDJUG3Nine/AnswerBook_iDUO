@@ -89,7 +89,25 @@ struct WatchBookView: View {
                 asksForQuestion = true
             }
         }
+        #if DEBUG
+        .onAppear(perform: skipAheadForScreenshots)
+        #endif
     }
+
+    #if DEBUG
+    /// For screenshots: launch with ANSWERBOOK_STAGE=cover or page to start there instead of at the question.
+    private func skipAheadForScreenshots() {
+        switch ProcessInfo.processInfo.environment["ANSWERBOOK_STAGE"] {
+        case "cover":
+            asksForQuestion = false
+        case "page":
+            asksForQuestion = false
+            stage = .open(deck.draw())
+        default:
+            break
+        }
+    }
+    #endif
 
     private var openPageID: UUID? {
         if case .open(let page) = stage { page.id } else { nil }
