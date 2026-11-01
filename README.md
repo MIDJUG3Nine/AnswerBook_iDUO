@@ -8,6 +8,8 @@ Answer Book is a small open-source iOS app made for the iPhone Duo, dressed as a
 
 On iPhones and iPads without a hinge, tap the cover to open the book, tap a page to turn it, and swipe down to close it.
 
+It also comes to Apple Watch: turn the Digital Crown to riffle through the pages and stop on your answer.
+
 ## Screenshots
 
 <!-- screenshots: cover (closed), a page (open), half open -->
@@ -25,6 +27,19 @@ The app is built on [HingeKit](https://github.com/MIDJUG3Nine/HingeKit), which t
 | Close the phone | `.closed` | Shows the cover again |
 
 See `AnswerBook/Views/BookView.swift`; the whole hinge logic is about ten lines.
+
+## On Apple Watch
+
+The watch app ships inside the iPhone app and can also be installed on its own, without the iPhone app. It needs watchOS 10 or later.
+
+| What you do | What the book does |
+| --- | --- |
+| Turn the Digital Crown | Riffles through the pages, one click under your finger for each page |
+| Stop turning | Falls open on the page you stopped at |
+| Tap, or double tap (Series 9, Ultra 2 and later) | Opens the book, or turns to another page |
+| Lower your wrist | The answer stays in pale ink on the Always On screen |
+
+The answers, the deck, the fonts, textures and strings are shared with the iPhone app; the watch's own views are in `AnswerBookWatch/`.
 
 ## Features
 
@@ -52,6 +67,7 @@ The leather, paper, corner ornament, emblem and app icon are drawn in SVG. The s
 
 ```sh
 xcodebuild test -scheme AnswerBook -destination 'platform=iOS Simulator,name=iPhone 17'
+xcodebuild test -scheme AnswerBookWatch -destination 'platform=watchOS Simulator,name=Apple Watch Series 11 (46mm)'
 ```
 
 ## Star History

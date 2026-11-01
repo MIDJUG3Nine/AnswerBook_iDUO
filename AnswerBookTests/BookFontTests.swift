@@ -29,7 +29,7 @@ import Testing
 
     private static let interfaceKeys = [
         "Answer Book", "Open the book", "Tap to open", "Page %lld", "Turn the page", "Close the book",
-        "Think of a question.",
+        "Think of a question.", "Turn the crown",
     ]
 
     private static func missingCharacters(in text: String, fontName: String) -> String {
