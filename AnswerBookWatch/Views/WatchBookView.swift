@@ -96,13 +96,19 @@ struct WatchBookView: View {
 
     #if DEBUG
     /// For screenshots: launch with ANSWERBOOK_STAGE=cover or page to start there instead of at the question.
+    /// With `page`, ANSWERBOOK_PAGE=1…365 picks the page (for example the longest answers), otherwise it is random.
     private func skipAheadForScreenshots() {
-        switch ProcessInfo.processInfo.environment["ANSWERBOOK_STAGE"] {
+        let environment = ProcessInfo.processInfo.environment
+        switch environment["ANSWERBOOK_STAGE"] {
         case "cover":
             asksForQuestion = false
         case "page":
             asksForQuestion = false
-            stage = .open(deck.draw())
+            if let number = environment["ANSWERBOOK_PAGE"].flatMap(Int.init), Answer.all.indices.contains(number - 1) {
+                stage = .open(Page(answer: Answer.all[number - 1], number: number))
+            } else {
+                stage = .open(deck.draw())
+            }
         default:
             break
         }
