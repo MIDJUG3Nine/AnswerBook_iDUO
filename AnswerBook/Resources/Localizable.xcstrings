@@ -61,6 +61,17 @@
         }
       }
     },
+    "Turn the crown": {
+      "comment": "Apple Watch: the hint on the cover",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "转动表冠"
+          }
+        }
+      }
+    },
     "Think of a question.": {
       "localizations": {
         "zh-Hans": {

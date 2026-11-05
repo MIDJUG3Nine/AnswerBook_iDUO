@@ -8,6 +8,8 @@ Answer Book（中文名「答案之书」）是一个为 iPhone Duo 做的小型
 
 在没有铰链的 iPhone 和 iPad 上，点一下封面打开书，点书页翻页，向下滑合上。
 
+Apple Watch 上也有：转动数码表冠哗哗翻书，停在哪一页，哪一页就是你的答案。
+
 ## 截图
 
 <!-- screenshots: cover (closed), a page (open), half open -->
@@ -25,6 +27,19 @@ iPhone Duo 模拟器上的截图稍后补上。
 | 合上手机 | `.closed` | 回到封面 |
 
 具体见 `AnswerBook/Views/BookView.swift`，整个铰链逻辑大约十行。
+
+## Apple Watch 版
+
+手表版内置在 iPhone App 里，也可以不装 iPhone App、单独装在手表上。需要 watchOS 10 或更高版本。
+
+| 你的动作 | 书的反应 |
+| --- | --- |
+| 转动数码表冠 | 一页页翻过去，每翻一页手指下轻轻一震 |
+| 停手 | 停在哪一页就翻开哪一页 |
+| 轻点，或双指互点（Series 9、Ultra 2 及以后） | 翻开书，或翻到另一页 |
+| 放下手腕 | 答案以淡色字留在常亮屏幕上 |
+
+答案、发牌逻辑、字体、纹理和文字都和 iPhone App 共用；手表自己的界面在 `AnswerBookWatch/`。
 
 ## 功能
 
@@ -52,6 +67,7 @@ Run scheme 设置了 `HINGE_SIMULATOR=1`，Debug 构建里会显示 HingeKit 的
 
 ```sh
 xcodebuild test -scheme AnswerBook -destination 'platform=iOS Simulator,name=iPhone 17'
+xcodebuild test -scheme AnswerBookWatch -destination 'platform=watchOS Simulator,name=Apple Watch Series 11 (46mm)'
 ```
 
 ## Star 趋势
