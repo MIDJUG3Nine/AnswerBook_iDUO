@@ -12,9 +12,13 @@ It also comes to Apple Watch: turn the Digital Crown to riffle through the pages
 
 ## Screenshots
 
-<!-- screenshots: cover (closed), a page (open), half open -->
+<p align="center">
+  <img src="docs/screenshots/duo-en-outer-cover.jpg" alt="Closed: the leather cover on the outer display" height="360">
+  &nbsp;
+  <img src="docs/screenshots/duo-en-inner-open.jpg" alt="Open: an answer on the inner display, as a two-page spread" height="360">
+</p>
 
-Screenshots from the iPhone Duo simulator are coming soon.
+Closed, the outer display shows the cover. Open the phone and the inner display shows the book as a two-page spread. Taken in the iPhone Duo simulator.
 
 ## How it uses the hinge
 

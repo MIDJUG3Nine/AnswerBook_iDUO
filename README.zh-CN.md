@@ -12,9 +12,13 @@ Apple Watch 上也有：转动数码表冠哗哗翻书，停在哪一页，哪�
 
 ## 截图
 
-<!-- screenshots: cover (closed), a page (open), half open -->
+<p align="center">
+  <img src="docs/screenshots/duo-zh-outer-cover.jpg" alt="合上时，外屏显示皮面封面" height="360">
+  &nbsp;
+  <img src="docs/screenshots/duo-zh-inner-open.jpg" alt="打开后，内屏像摊开的两页书，右页是答案" height="360">
+</p>
 
-iPhone Duo 模拟器上的截图稍后补上。
+合上时外屏是封面；打开手机，内屏像一本摊开的书。截图来自 iPhone Duo 模拟器。
 
 ## 怎么用到铰链
 
